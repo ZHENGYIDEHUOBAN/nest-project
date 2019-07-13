@@ -7,8 +7,8 @@ import { User } from './user.entity';
 export class UserService {
   constructor(
     @InjectRepository(User)
-    private readonly userRepository: Repository<User>
-  ) { }
+    private readonly userRepository: Repository<User>,
+  ) {}
 
   async findAll() {
     return await this.userRepository.find();
@@ -16,7 +16,9 @@ export class UserService {
 
   async register(user: User) {
     user.setRegDate(new Date());
-    const { raw: { insertId } } = await this.userRepository.insert(user);
+    const {
+      raw: { insertId },
+    } = await this.userRepository.insert(user);
     return await this.userRepository.findOne({ id: insertId });
   }
 }

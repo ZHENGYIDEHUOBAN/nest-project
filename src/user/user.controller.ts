@@ -13,8 +13,8 @@ export class UserController {
 
   @Post('register')
   async register(@Body() params) {
-    const { username, password, gender, age } = params;
-    const user = new User(username, password, gender, age);
+    const { username, password, gender, age, email, nickname } = params;
+    const user = new User(username, password, gender, age, email, nickname);
     return await this.userService.register(user);
   }
 }

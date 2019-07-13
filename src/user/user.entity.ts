@@ -2,11 +2,13 @@ import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity()
 export class User {
-  constructor(username: string, password: string, gender: string, age: number) {
+  constructor(username: string, password: string, gender: string, age: number, email: string, nickname: string) {
     this.username = username;
     this.password = password;
     this.gender = gender;
     this.age = age;
+    this.email = email;
+    this.nickname = nickname;
   }
 
   @PrimaryGeneratedColumn()
@@ -15,9 +17,15 @@ export class User {
   @Column({ type: 'nvarchar', length: 100, nullable: true })
   code: string;
 
+  @Column({ type: 'nvarchar', length: 100, nullable: true })
+  nickname: string;
+
+  @Column({ type: 'nvarchar', length: 100, nullable: true })
+  email: string;
+
   @Column({ type: 'nvarchar', length: 20, nullable: true })
   username: string;
-  
+
   @Column({ type: 'nvarchar', length: 20, nullable: true })
   password: string;
 
@@ -28,7 +36,7 @@ export class User {
   age: number;
 
   @Column()
-  regDate: Date
+  regDate: Date;
 
   setRegDate(date: Date) {
     this.regDate = date;
